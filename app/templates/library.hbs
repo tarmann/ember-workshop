@@ -1,0 +1,31 @@
+<h1>Library Route</h1>
+
+<h2>Two way binding in the route template</h2>
+
+<p>Query:</p>
+<p>{{query}}</p>
+
+<p>Input bind to the query param:</p>
+{{input value=query}}
+
+<h2>In the model</h2>
+
+<p>Model values from query params:</p>
+<p>Query: {{model.query}}</p>
+<p>Active: {{model.active}}</p>
+
+<h2>In the link-to helper</h2>
+
+<p>Update route with a link-to component</p>
+{{#link-to "library" (query-params active=true)}} Active {{/link-to}} |
+{{#link-to "library" (query-params active=null)}} Inactive {{/link-to}} |
+{{#link-to "library" (query-params name=null query=null)}} Reset {{/link-to}}
+
+<h2>It can be updated with actions</h2>
+
+<p>Component with actions to be triggered on route:</p>
+{{my-route-component
+    searchAction=(route-action "search")
+    resetAction=(route-action "reset")}}
+
+{{outlet}}
