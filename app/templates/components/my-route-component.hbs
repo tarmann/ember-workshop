@@ -1,4 +1,9 @@
-{{input value=localQuery}}
-<button {{action searchAction localQuery}}>Search</button>
-<button {{action resetAction}}>Reset</button>
+<div class="input-group">
+  {{input value=localQuery classNames="form-control"}}
+
+  <div class="input-group-append">
+    <button {{action searchAction localQuery}} class="btn btn-dark">Search</button>
+    <button {{action resetAction}} class="btn btn-dark">Reset</button>
+  </div>
+</div>
 {{yield}}

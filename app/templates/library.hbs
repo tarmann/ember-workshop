@@ -1,31 +1,58 @@
-<h1>Library Route</h1>
+<h1>Query Params</h1>
 
-<h2>Two way binding in the route template</h2>
+<table class="table">
+  <tr>
+    <td>query</td>
+    <td>{{query}}</td>
+  </tr>
+  <tr>
+    <td>active</td>
+    <td>{{active}}</td>
+  </tr>
+  <tr>
+    <td>model.query</td>
+    <td>{{model.query}}</td>
+  </tr>
+  <tr>
+    <td>model.active</td>
+    <td>{{model.active}}</td>
+  </tr>
+</table>
 
-<p>Query:</p>
-<p>{{query}}</p>
+<div class="row">
+  <div class="col-sm">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h2 class="h4">Two way binding</h2>
+        <div class="form-group">
+          {{input value=query class="form-control"}}
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>Input bind to the query param:</p>
-{{input value=query}}
+  <div class="col-sm">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h2 class="h4">In a link-to helper</h2>
+        <p>Update route with a link-to component</p>
+        {{#link-to "library" (query-params active=true)}} Active {{/link-to}} |
+        {{#link-to "library" (query-params active=null)}} Inactive {{/link-to}} |
+        {{#link-to "library" (query-params query=null active=null)}} Reset {{/link-to}}
+      </div>
+    </div>
+  </div>
 
-<h2>In the model</h2>
-
-<p>Model values from query params:</p>
-<p>Query: {{model.query}}</p>
-<p>Active: {{model.active}}</p>
-
-<h2>In the link-to helper</h2>
-
-<p>Update route with a link-to component</p>
-{{#link-to "library" (query-params active=true)}} Active {{/link-to}} |
-{{#link-to "library" (query-params active=null)}} Inactive {{/link-to}} |
-{{#link-to "library" (query-params name=null query=null)}} Reset {{/link-to}}
-
-<h2>It can be updated with actions</h2>
-
-<p>Component with actions to be triggered on route:</p>
-{{my-route-component
-    searchAction=(route-action "search")
-    resetAction=(route-action "reset")}}
+  <div class="col-sm">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h2 class="h4">Using route-action</h2>
+        {{my-route-component
+            searchAction=(route-action "search")
+            resetAction=(route-action "reset")}}
+      </div>
+    </div>
+  </div>
+</div>
 
 {{outlet}}
